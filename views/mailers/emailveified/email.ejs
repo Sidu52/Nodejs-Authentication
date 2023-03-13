@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/css/mail.css">
+<div class="container">
+    <div class="alert">
+        <h1>Hi <strong><%= user.username %></strong> This message for email verification:-</h1>
+        <h4>Email:- <%= user.email %></h4>
+        <h4>Password:- <%= user.password %></h4>
+        <p>This link valid for <strong>2 min </strong>click for <strong>Create Account</strong></p>
+    </div>
+    <p>
+        <a href="http://localhost:8000/user/createuser/<%= user.token %>">Click here for Create your Account</a>
+    </p>
+    <p>Thanks! Insert your regular email message here.</p>
+</div>

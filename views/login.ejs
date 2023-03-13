@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/css/userlogin.css ">
+<div class="loginbox">
+    <h2>Login</h2>
+    <form action="/user/loginpage" method="POST">
+        <div class="userbox">
+            <input type="text" name="email" required="">
+            <label >Email</label>
+        </div>
+        <div class="userbox">
+            <input type="password" name="password"required="" >
+            <label >Password</label>
+        </div>
+        <div class="button_container">
+            <button class="button_box">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+            </button>
+            <a href="/user/auth/google" class="google_icon"><i class="uil uil-google"></i></a>
+
+        </div>
+        
+    </form>
+    <div class="button_container">
+        <a href="/singup">
+            <button class="button_box">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Singup
+            </button>
+        </a>
+        <a href="/user/forgotpassword">
+            <button class="button_box">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Forgot password
+            </button>
+        </a>
+    </div>
+</div>

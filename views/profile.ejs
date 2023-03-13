@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/userlogin.css ">
+<div class="loginbox">
+    <h2>Welcome to the site!</h2>
+    <p>You have successfully logged in.</p>
+    <div class="button_container">
+        <a href="/user/singout">
+            <button class="button_box">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Singout
+            </button>
+        </a>
+        <% if(locals.user){ %>
+            <a href="/user/Resetpassword/<%= locals.user._id %>">
+                <button class="button_box">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Pass.Reset
+                </button>
+            </a>
+        <% } %>
+       
+        
+    </div>
+</div>
