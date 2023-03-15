@@ -6,23 +6,67 @@
 
 body {
   font-family: sans-serif;
-  background: #172032;
+  background: #fe9b27;
 }
 
 .loginbox {
   position: absolute;
+  display: flex;
+  justify-content: end;
+  /* align-items: center; */
   top: 50%;
   left: 50%;
-  width: 400px;
+  width: 65%;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, .5);
   box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 20px;
   box-sizing: border-box;
+
 }
 
-.loginbox h2 ,p {
+.loginbox .leftbox .image {
+  position: absolute;
+  left: 121px;
+  bottom: -14px;
+}
+
+.loginbox .leftbox img {
+  width: 94vh;
+}
+
+.loginbox .leftbox .singupimage {
+  position: absolute;
+  left: 86px;
+  bottom: -14px;
+}
+
+.loginbox .leftbox .singupimage img {
+  width: 115vh;
+}
+
+.loginbox .leftbox .heading {
+  color: white;
+  width: 60%;
+  padding: 5% 0;
+}
+.leftbox .heading h1{
+  margin-bottom: 20px;
+  font-size: 3rem;
+  letter-spacing: 4px;
+}
+.leftbox .heading p{
+  color: #c5adad;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+.loginbox .rightbox{
+  width: 94%;
+}
+.loginbox .rightbox h2,
+.loginbox .rightbox p {
   margin: 0 0 30px;
   text-align: center;
   color: #fff;
@@ -60,7 +104,7 @@ body {
 .loginbox .userbox input:valid~label {
   top: -20px;
   left: 0;
-  color: #03e9f4;
+  color: #f4dc03;
   font-size: 12px;
 }
 
@@ -85,9 +129,10 @@ body {
   justify-content: space-between;
   align-items: end;
 }
-.loginbox .button_container .google_icon{
+
+.loginbox .button_container .google_icon {
   font-size: 2rem;
-  color: #03e9f4;
+  color: #f4e803;
   margin-right: 15px;
   padding: 9px 12px 6px 12px;
 }
@@ -96,7 +141,7 @@ body {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: #03e9f4;
+  color: #f4f003;
   overflow: hidden;
   transition: .5s;
   margin-top: 40px;
@@ -112,13 +157,13 @@ body {
 .loginbox .singupbtn a:hover,
 .loginbox .button_container .google_icon:hover {
   text-decoration: none;
-  background: #03e9f4;
+  background: #615f04;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #03e9f4,
-    0 0 25px #03e9f4,
-    0 0 50px #03e9f4,
-    0 0 100px #03e9f4;
+  box-shadow: 0 0 5px #f4dc03,
+    0 0 25px #f4f003,
+    0 0 50px #e8f403,
+    0 0 100px #f4d803;
 }
 
 .loginbox .button_box span {
@@ -126,12 +171,12 @@ body {
   display: block;
 }
 
-.login_box .button_box span:nth-child(1) {
+.loginbox .button_box span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #03e9f4);
+  background: linear-gradient(90deg, transparent, #f4c403);
   animation: btn-anim1 1s linear infinite;
 }
 
@@ -151,7 +196,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
+  background: linear-gradient(180deg, transparent, #f4c403);
   animation: btn-anim2 1s linear infinite;
   animation-delay: .25s
 }
@@ -171,7 +216,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #03e9f4);
+  background: linear-gradient(270deg, transparent, #f4c403);
   animation: btn-anim3 1s linear infinite;
   animation-delay: .5s
 }
@@ -192,7 +237,7 @@ body {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #03e9f4);
+  background: linear-gradient(360deg, transparent, #f4c403);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
 }
