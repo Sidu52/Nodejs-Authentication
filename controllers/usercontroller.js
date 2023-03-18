@@ -50,6 +50,7 @@ module.exports.forgotpassword = (req, res) => {
 module.exports.Resetpassword = async (req, res) => {
     let useremail = await emailveified.findOne({ user: req.params.id });
     let user = await User.findById(req.params.id);
+    console.log(user)
     if (!useremail) {
         const generateToken = () => {
             return crypto.randomBytes(48).toString('hex');
@@ -59,21 +60,26 @@ module.exports.Resetpassword = async (req, res) => {
             email: user.email,
             token: token,
             tokenExpiry: Date.now() + 1200000000,
-            user: user._id
+            user: user
         }).then(result => {
             result.save();
-            // resetpassword.deleteOne({ user: req.params.id })
-            return res.render("Resetpassword", {
-                title: "Reset-Password",
-                user: user
+            const tokenExpiration = useremail.tokenExpiry;
+            if (new Date() < tokenExpiration) {
+                emailveified.findOneAndDelete({ user: req.params.id })
+                return res.render("Resetpassword", {
+                    title: "Reset-Password",
+                    user: user
             })
+        }
+            
         }).catch(err => {
             console.log(err);
         });
     } else {
+        
         const tokenExpiration = useremail.tokenExpiry;
         if (new Date() < tokenExpiration) {
-            // resetpassword.deleteOne({ user: req.params.id })
+            let deletes = await emailveified.findOneAndDelete({ user: req.params.id })
             return res.render("Resetpassword", {
                 title: "Reset-Password",
                 user: user

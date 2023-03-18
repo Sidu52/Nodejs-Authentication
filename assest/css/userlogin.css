@@ -135,6 +135,7 @@ body {
   color: #f4e803;
   margin-right: 15px;
   padding: 9px 12px 6px 12px;
+  z-index: 1;
 }
 
 .loginbox .button_box {

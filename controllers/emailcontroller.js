@@ -24,7 +24,13 @@ module.exports.emailverifiction = async (req, res) => {
                 sendmail.verification(result);
             })
         }else{
-            req.flash('error','Password unmatch!')
+            if(user){
+                req.flash('error','User Aleredy Created!')
+            }
+            else{
+                req.flash('error','Password unmatch!')
+            }
+           
         }
         return res.redirect('back');
     } catch(error) {
@@ -56,7 +62,7 @@ module.exports.sendmail = async (req, res) => {
                     console.log(err);
                 });
             }else{
-                emailverifed.findByIdAndUpdate({_id: users.id},{
+                emailverifed.findByIdAndUpdate(users.id,{
                     token: token,
                     tokenExpiry: Date.now() + 1200000000
                 }).then((result) => {
@@ -65,10 +71,12 @@ module.exports.sendmail = async (req, res) => {
                     console.log(error);
                 });
             }
-            sendmailforgotpassword.forgotpassword(users );
+            sendmailforgotpassword.forgotpassword(users);
+        }else{
+            req.flash("error","user not found");
         }
     } catch (err) {
-        console.log("Error in finding User!", err)
+        req.flash("error","user not found");
         return res.redirect('back');
     }
     return res.redirect('back');
