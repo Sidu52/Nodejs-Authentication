@@ -3,6 +3,7 @@ const emailverifed = require('../modules/emailverifed');
 const sendmail = require('../mail/emailverification');
 const sendmailforgotpassword=require('../mail/forgotpassword');
 const crypto = require('crypto');
+
 module.exports.emailverifiction = async (req, res) => {
     try {
         let user = await User.findOne({ email: req.body.email });
@@ -23,6 +24,7 @@ module.exports.emailverifiction = async (req, res) => {
                 result.save();
                 sendmail.verification(result);
             })
+            req.flash('success','Email Sent..')
         }else{
             if(user){
                 req.flash('error','User Aleredy Created!')
@@ -54,30 +56,37 @@ module.exports.sendmail = async (req, res) => {
                 emailverifed.create({
                     email: req.body.email,
                     token: token,
-                    tokenExpiry: Date.now() + 1200000000,
+                    tokenExpiry: Date.now() + 120000,
                     user: user._id
                 }).then(result => {
                     result.save();
+                    let use= emailverifed.findOne({email:req.body.email})
+                    console.log("Ss",use);
+                    sendmailforgotpassword.forgotpassword(use);
                 }).catch(err => {
                     console.log(err);
                 });
             }else{
                 emailverifed.findByIdAndUpdate(users.id,{
                     token: token,
-                    tokenExpiry: Date.now() + 1200000000
+                    tokenExpiry: Date.now() + 120000
                 }).then((result) => {
-                             
+                    console.log("Ss",user);
+                    console.log("pp",users);
+                    sendmailforgotpassword.forgotpassword(users);       
                 }).catch((error) => {
                     console.log(error);
                 });
             }
-            sendmailforgotpassword.forgotpassword(users);
+            
         }else{
             req.flash("error","user not found");
+            return res.redirect('back');
         }
     } catch (err) {
         req.flash("error","user not found");
         return res.redirect('back');
     }
+    req.flash("success","Email Sent..")
     return res.redirect('back');
 }

@@ -23,6 +23,7 @@ module.exports.createuser = async (req, res) => {
             password: user.password
         });
         let users = await emailveified.deleteOne({ token: req.params.token });//users delete from database when user create succesfull
+        req.flash("success", 'User Create Successfull')
         return res.redirect('/')
     } catch (err) {
         if (err) { console.log("Error in finding user! ", err); return; }
@@ -48,6 +49,7 @@ module.exports.forgotpassword = (req, res) => {
 
 //Reset Password
 module.exports.Resetpassword = async (req, res) => {
+    console.log("HEllo")
     let useremail = await emailveified.findOne({ user: req.params.id });
     let user = await User.findById(req.params.id);
     console.log(user)
@@ -59,7 +61,7 @@ module.exports.Resetpassword = async (req, res) => {
         emailveified.create({
             email: user.email,
             token: token,
-            tokenExpiry: Date.now() + 1200000000,
+            tokenExpiry: Date.now() + 120000,
             user: user
         }).then(result => {
             result.save();
@@ -70,8 +72,7 @@ module.exports.Resetpassword = async (req, res) => {
                     title: "Reset-Password",
                     user: user
             })
-        }
-            
+        }   
         }).catch(err => {
             console.log(err);
         });
