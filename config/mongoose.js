@@ -1,6 +1,5 @@
 const mongoose=require('mongoose');
-// const url = 'mongodb://0.0.0.0:27017/loginuser';
-const url ='mongodb+srv://Sidhu:Sidu&7879@cluster0.fca4n63.mongodb.net/NodejsAuthenticated';
+const url = 'mongodb://0.0.0.0:27017/loginuser';
 
 mongoose.connect(url);
 const db=mongoose.connection;
